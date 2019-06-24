@@ -10,7 +10,7 @@ function App() {
   // state= {posts=[]};
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(10);
+  const [postsPerPage] = useState(10);
 
   useEffect(() => {
     const festchPosts = async () => {
@@ -24,6 +24,8 @@ function App() {
 
   }, []);
 
+  const paginate = number => setCurrentPage(number);
+
   // console.log(posts);
 
   const indexOfLastPost = currentPage * postsPerPage;
@@ -35,7 +37,7 @@ function App() {
       <div className="App">
         <h1 className="text-primary mb-3">App</h1>
         <Posts posts={curretnPosts} loading={loading} />
-        <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} />
+        <Pagination postsPerPage={postsPerPage} paginate= {paginate} totalPosts={posts.length} />
       </div>
     </div>
   );
